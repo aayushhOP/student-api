@@ -3,11 +3,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-
-// Middleware to parse JSON
 app.use(express.json());
 
-// MongoDB Connection
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/studentDB', {
@@ -21,16 +18,12 @@ const connectDB = async () => {
   }
 };
 
-// Connect to Database
 connectDB();
 
-// Import Routes
 const studentRoutes = require('./routes/studentRoutes');
 
-// Use Routes
 app.use('/students', studentRoutes);
 
-// Root Route
 app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to Student Management API',
@@ -44,7 +37,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Global Error Handler
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
   res.status(err.status || 500).json({
@@ -54,7 +46,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Handle 404 Routes
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -62,7 +53,6 @@ app.use((req, res) => {
   });
 });
 
-// Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✓ Server is running on port ${PORT}`);
