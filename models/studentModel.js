@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define Student Schema
 const studentSchema = new mongoose.Schema(
   {
     name: {
@@ -28,9 +27,8 @@ const studentSchema = new mongoose.Schema(
     }
   },
   {
-    timestamps: true // Automatically adds createdAt and updatedAt fields
+    timestamps: true 
   }
 );
 
-// Export the model
 module.exports = mongoose.model('Student', studentSchema);
