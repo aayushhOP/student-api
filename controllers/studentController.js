@@ -1,8 +1,5 @@
 const Student = require('../models/studentModel');
 
-// @desc    Get all students
-// @route   GET /students
-// @access  Public
 exports.getAllStudents = async (req, res, next) => {
   try {
     const students = await Student.find();
@@ -17,9 +14,6 @@ exports.getAllStudents = async (req, res, next) => {
   }
 };
 
-// @desc    Get single student by ID
-// @route   GET /students/:id
-// @access  Public
 exports.getStudentById = async (req, res, next) => {
   try {
     const student = await Student.findById(req.params.id);
@@ -46,14 +40,10 @@ exports.getStudentById = async (req, res, next) => {
   }
 };
 
-// @desc    Create new student
-// @route   POST /students
-// @access  Public
 exports.createStudent = async (req, res, next) => {
   try {
     const { name, course, age, city } = req.body;
     
-    // Create new student
     const student = await Student.create({
       name,
       course,
@@ -79,9 +69,6 @@ exports.createStudent = async (req, res, next) => {
   }
 };
 
-// @desc    Update student
-// @route   PUT /students/:id
-// @access  Public
 exports.updateStudent = async (req, res, next) => {
   try {
     const { name, course, age, city } = req.body;
@@ -90,8 +77,8 @@ exports.updateStudent = async (req, res, next) => {
       req.params.id,
       { name, course, age, city },
       {
-        new: true, // Return updated document
-        runValidators: true // Run schema validators
+        new: true, 
+        runValidators: true 
       }
     );
     
@@ -126,9 +113,6 @@ exports.updateStudent = async (req, res, next) => {
   }
 };
 
-// @desc    Delete student
-// @route   DELETE /students/:id
-// @access  Public
 exports.deleteStudent = async (req, res, next) => {
   try {
     const student = await Student.findByIdAndDelete(req.params.id);
