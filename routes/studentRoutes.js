@@ -8,14 +8,13 @@ const {
   deleteStudent
 } = require('../controllers/studentController');
 
-// Routes
 router.route('/')
-  .get(getAllStudents)      // GET /students
-  .post(createStudent);     // POST /students
+  .get(getAllStudents)      
+  .post(createStudent);     
 
 router.route('/:id')
-  .get(getStudentById)      // GET /students/:id
-  .put(updateStudent)       // PUT /students/:id
-  .delete(deleteStudent);   // DELETE /students/:id
+  .get(getStudentById)      
+  .put(updateStudent)       
+  .delete(deleteStudent);  
 
 module.exports = router;
