@@ -1,0 +1,1 @@
+A rest API for maintaining the student records , functionality tested on postman
